@@ -1,0 +1,13 @@
+Application type:
+    -Gui
+    -CLI
+    -Web
+
+themes:
+    -game
+        -DnD like
+    -utilitaire
+
+text based game
+    Gui or Cli?
+    importing online campaigns
