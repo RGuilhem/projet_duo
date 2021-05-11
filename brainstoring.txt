@@ -11,3 +11,14 @@ themes:
 text based game
     Gui or Cli?
     importing online campaigns
+
+Idées:
+    -dongon nbr infini de niveaux
+        -salles générées "aléatoirement"
+    -système de stats (sans classes)
+    -roguelite (à la mort, perte de progression certains bonus conservés)
+    -inventaire
+    -monstres
+        -combat tour à tour
+    -loot
+        -le type d'attaque dépend de l'arme
