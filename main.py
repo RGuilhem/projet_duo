@@ -1,5 +1,5 @@
 def main():
-    print("Hello world form switzerland")
+    print("Random changefeojzovipijava")
 
 
 if __name__ == "__main__":
