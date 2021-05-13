@@ -1,4 +1,6 @@
 from Entity import *
+from Stats import *
+from Item import *
 
 class Player(Entity) :
 
@@ -15,27 +17,23 @@ class Player(Entity) :
 
     # Attributes
 
-    inventory : List[Item]
+    #inventory : List[Item]
 
     # Methods
-    def __init__(self, player_name : str, player_stats : Stats, stuff : List[Item]):
-        self.name = player_name
-        self.base_stats = player_stats
-        self.stuff = stuff
-        self.hp = Entity.compute_hp(player_stats)
-        self.lvl = 0
-        self.position = [0] * 2
-
+    def __init__(self, player_name: str, base_stats: Stats):
+        super().__init__(player_name, base_stats)
 
 
     @staticmethod
-    def move(self, x : int, y : int) -> int[2]:
+    def move(self, x : int, y : int) :
         self.position[0] += x
         self.position[1] += y
         return position
 
 def main():
-    print("Hello world")
+
+    obj = Player("Sylver", Stats([1, 2, 3, 4, 5]))
+    print(obj.lvl, obj.position, obj.name)
 
 if __name__ == "__main__" :
     main()
