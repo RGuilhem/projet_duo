@@ -1,7 +1,7 @@
 class Stats:
 
     values: dict = dict([("strength", 0), ("attack", 0), ("magic", 0),
-                         ("agility", 0), ("defence", 0)])
+                         ("agility", 0), ("defense", 0)])
 
     def __init__(self, stat_list):
         if len(self.values) != len(stat_list):
