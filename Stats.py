@@ -44,6 +44,9 @@ class Stats:
             temp.values[key] = self.values[key] + other.values[key]
         return temp
 
+    def __iadd__(self, other):
+        self = self + other
+
     def __str__(self):
         string = ""
         for key in list(self.values):
