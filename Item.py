@@ -17,7 +17,7 @@ class Item:
         self.rarity = rarity
 
     def __str__(self):
-        return f"{str(self.name)} {self.rarity}\n STATS :\n{self.stats}"
+        return f"{self.rarity} {str(self.name)}\n STATS :\n{self.stats}"
 
 
 class Weapon(Item):
