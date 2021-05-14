@@ -16,13 +16,14 @@ class Item:
         self.rarity = rarity
 
 
-class Weapon(Item) :
+class Weapon(Item):
 
-    damage : float
-    mag_ratio : float
-    phys_ratio : float
+    damage: float
+    mag_ratio: float
+    phys_ratio: float
 
-    def __init__(self, name : str, stats : Stats, rarity : Rarity, damage : double, mag_ratio : double, phys_ratio : double):
+    def __init__(self, name: str, stats: Stats, rarity: Rarity, damage: float,
+                 mag_ratio: float, phys_ratio: float):
         self.damage = damage
         self.mag_ratio = mag_ratio
         self.phys_ratio = phys_ratio
@@ -30,17 +31,17 @@ class Weapon(Item) :
         super(Weapon, self).__init__(str, stats, rarity)
 
 
-class Armor(Item) :
+class Armor(Item):
 
-    armor : float
-    mag_ratio : float
-    phys_ratio : float
+    armor: float
+    mag_ratio: float
+    phys_ratio: float
 
-    def __init__(self, name : str, stats : Stats, rarity : Rarity, armor : float, mag_ratio : double, phys_ratio : double):
+    def __init__(self, name: str, stats: Stats, rarity: Rarity, armor: float,
+                 mag_ratio: float, phys_ratio: float):
 
         self.armor = armor
         self.mag_ratio = mag_ratio
         self.phys_ratio = phys_ratio
 
         super(Armor, self).__init__(str, stats, rarity)
-
