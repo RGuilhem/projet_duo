@@ -1,7 +1,8 @@
 from enum import Enum
 from Entity import Entity
 from Stats import Stats
-
+from Item import Item
+from RarityEnum import Rarity
 
 class Monster(Entity):
 
@@ -23,7 +24,7 @@ class Monster(Entity):
     def __init__(self, name: str, base_stats: Stats,
                  stuff, rank: "Rank") -> None:
 
-        super().__init__(name, base_stats)
+        super().__init__(name, base_stats, stuff)
         self.rank = rank
         self.is_aggro = False
 
@@ -41,4 +42,4 @@ class Rank(Enum):
 
 
 if __name__ == "__main__":
-    print(Monster(Rank.ELITE, Stats([1, 2, 3, 4, 5]), None))
+    print(Monster("Blob", Stats([1, 2, 3, 4, 5]), [Item("item", Stats.create_empty(), Rarity.MAGICAL)], Rank.ELITE))
