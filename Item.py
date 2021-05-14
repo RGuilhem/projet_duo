@@ -1,17 +1,16 @@
-from Stats import *
-from RarityEnum import *
+from Stats import Stats
+from RarityEnum import Rarity
 
-class Item :
+
+class Item:
 
     # Attributes
-    name : str
-    stats : Stats
-    rarity : Rarity
+    name: str
+    stats: Stats
+    rarity: Rarity
 
     # Methods
-    def __init__(self, name : str, stats : Stats, rarity : "Rarity"):
+    def __init__(self, name: str, stats: Stats, rarity: Rarity):
         self.name = name
         self.stats = stats
         self.rarity = rarity
-
-
