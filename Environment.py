@@ -38,10 +38,11 @@ class Level:
         self.biome = biome
         self.level_monsters = level_monsters
         self.map = [[0]*len(self.rooms) for lgn in range(len(self.rooms))]
+        self.connected_map = [[0]*len(self.rooms) for lgn in range(len(self.rooms))]
 
         i = 1
         for room in rooms:
-            self.map[room.position[0]][room.position[1]] = i
+            self.map[room.position_x][room.position_y] = i
             i += 1
 
     def add_room(self, new_room: "Room"):
@@ -54,18 +55,36 @@ class Level:
             print()
 
 
+    def generate_connected_map(self):
+        pass
+
+    def is_connected(self, room : "Room", mini_map):
+        if mini_map[room.position_x-1][room.position_y] != 0:
+            return True
+        if mini_map[room.position_x][room.position_y+1] != 0:
+            return True
+        if mini_map[room.position_x+1][room.position_y] != 0:
+            return True
+        if mini_map[room.position_x][room.position_y-1] != 0:
+            return True
+        return False
+
+
+
 class Room:
     monsters: list[Monster]
-    position = [0] * 2
+    position_x : int
+    position_y : int
     biome: "Biome"
+    number : int
 
     # shape : ????????????
 
-    def __init__(self, monsters: list[Monster], position_x: int, position_y: int, biome: "Biome"):
+    def __init__(self, monsters: list[Monster], position_x: int, position_y: int, number : int, biome: "Biome"):
         self.monsters = monsters
-        self.position = list([0, 0])
-        self.position[0] = position_x
-        self.position[1] = position_y
+        self.position_x = position_x
+        self.position_y = position_y
+        self.number = number
         self.biome = biome
 
 
