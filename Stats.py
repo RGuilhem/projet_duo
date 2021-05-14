@@ -34,7 +34,13 @@ class Stats:
     def get_defense(self) -> int:
         return self.values["defense"]
 
-    def __add__(self, other):
+    def copy(self):
+        temp = Stats.create_empty()
+        for key in list(self.values):
+            temp.values[key] = self.values[key]
+        return temp
+
+    def __add__(self, other: "Stats") -> "Stats":
         if not isinstance(other, Stats):
             raise ValueError(
                 "It's only possible to   add two Stats objects together")
@@ -44,8 +50,17 @@ class Stats:
             temp.values[key] = self.values[key] + other.values[key]
         return temp
 
-    def __iadd__(self, other):
+    def __iadd__(self, other: "Stats") -> "Stats":
         return self + other
+
+    def __mul__(self, other: float) -> "Stats":
+        temp = self.copy()
+        for key in list(self.values):
+            temp.values[key] = int(self.values[key] * other)
+        return temp
+
+    def __imul__(self, other: float) -> "Stats":
+        return self * other
 
     def __str__(self):
         string = ""
@@ -55,6 +70,6 @@ class Stats:
 
 
 if __name__ == "__main__":
-    s1 = Stats([1, 2, 3, 4, 5])
+    s1 = Stats([10, 2, 3, 4, 5])
     s2 = Stats([5, 4, 3, 2, 1])
-    print(s1 + s2)
+    print(s1*1.2)

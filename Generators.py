@@ -1,6 +1,7 @@
 from Item import Item
 import random
 from Stats import Stats
+from RarityEnum import Rarity
 
 
 class Generators:
@@ -11,6 +12,7 @@ class Generators:
         content = f.read()
         names = content.split("\n")
         item_name = f"{random.choice(names)}'s item"
+        rarity = random.choice(Rarity)
 
     @staticmethod
     def random_unique():
