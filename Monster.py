@@ -1,6 +1,9 @@
 from enum import Enum
+from Entity import Entity
+from Stats import Stats
 
-class Monster(Entity) :
+
+class Monster(Entity):
 
     # Pre-existing attributes
     '''
@@ -14,30 +17,28 @@ class Monster(Entity) :
      '''
 
     # Attributes
-    is_aggro : bool
-    rank : enum[Rank]
+    is_aggro: bool
+    rank: "Rank"
 
-    def __init__(self, monster_rank : Rank, monster_stats : Stats, stuff : List[Item]):
+    def __init__(self, name: str, base_stats: Stats,
+                 stuff, rank: "Rank") -> None:
 
-        self.rank = monster_rank
-
-        if rank == 1 :
-            name.append("minion")
-        elif rank == 2 :
-            name.append("elite")
-        else :
-            name.append("sovereign")
-
-        self.base_stats = monster_stats
-        self.stuff = stuff
-        self.hp = Entity.compute_hp(monster_stats)
-        self.lvl = 0
-        self.position = [0] * 2
+        super().__init__(name, base_stats)
+        self.rank = rank
         self.is_aggro = False
 
+    def __str__(self) -> str:
+        return f"{str(self.rank)} {super().__str__()}"
 
 
-class Rank(Enum) :
+class Rank(Enum):
     MINION = 1
     ELITE = 2
     SOVEREIGN = 3
+
+    def __str__(self) -> str:
+        return f"{self.name} "
+
+
+if __name__ == "__main__":
+    print(Monster(Rank.ELITE, Stats([1, 2, 3, 4, 5]), None))

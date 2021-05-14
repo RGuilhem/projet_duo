@@ -32,3 +32,11 @@ class Entity:
 
     def compute_total_stats(self, base_stats: Stats):
         pass
+
+    def __str__(self):
+        return f"{self.name}: Level {self.lvl}"
+
+
+if __name__ == "__main__":
+    entity = Entity("Player", Stats([1, 2, 3, 4, 5]))
+    print(entity)
