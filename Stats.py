@@ -45,7 +45,7 @@ class Stats:
         return temp
 
     def __iadd__(self, other):
-        self = self + other
+        return self + other
 
     def __str__(self):
         string = ""

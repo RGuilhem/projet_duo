@@ -36,5 +36,6 @@ def main():
     obj = Player("Sylver", Stats([1, 2, 3, 4, 5]))
     print(obj.lvl, obj.position, obj.name)
 
+
 if __name__ == "__main__":
     main()
