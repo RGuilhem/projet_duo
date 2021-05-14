@@ -8,12 +8,16 @@ class Item:
     name: str
     stats: Stats
     rarity: Rarity
+    RARITY_MULTIPLIERS: list[float] = [1, 1.2, 1.4, 1.6, 1.8]
 
     # Methods
     def __init__(self, name: str, stats: Stats, rarity: Rarity):
         self.name = name
-        self.stats = stats
+        self.stats = stats * Item.RARITY_MULTIPLIERS[rarity.value]
         self.rarity = rarity
+
+    def __str__(self):
+        return f"{str(self.name)} {self.rarity}\n STATS :\n{self.stats}"
 
 
 class Weapon(Item):
@@ -24,11 +28,15 @@ class Weapon(Item):
 
     def __init__(self, name: str, stats: Stats, rarity: Rarity, damage: float,
                  mag_ratio: float, phys_ratio: float):
-        self.damage = damage
-        self.mag_ratio = mag_ratio
-        self.phys_ratio = phys_ratio
+        mult = Item.RARITY_MULTIPLIERS[rarity.value]
+        self.damage = int(damage * mult)
+        self.mag_ratio = round(mag_ratio * mult, 2)
+        self.phys_ratio = round(phys_ratio * mult, 2)
 
-        super(Weapon, self).__init__(str, stats, rarity)
+        super(Weapon, self).__init__(name, stats, rarity)
+
+    def __str__(self) -> str():
+        return f"{super().__str__()}Damage: {self.damage}\nMagicRatio: {self.mag_ratio}\nPhysical Ratio: {self.phys_ratio}\n"
 
 
 class Armor(Item):
@@ -44,4 +52,16 @@ class Armor(Item):
         self.mag_ratio = mag_ratio
         self.phys_ratio = phys_ratio
 
-        super(Armor, self).__init__(str, stats, rarity)
+        super(Armor, self).__init__(name, stats, rarity)
+
+
+    def __str__(self) -> str():
+        return f"{super().__str__()}Armor: {self.armor}\nMagicRatio: {self.mag_ratio}\nPhysical Ratio: {self.phys_ratio}\n"
+
+
+if __name__ == "__main__":
+    s = Stats([10, 15, 12, 15, 11])
+    print(Item("test_item", s, Rarity.NORMAL))
+    for r in Rarity:
+        item = Armor("item", s, r, 10, 0.8, 0.2)
+        print(item)
