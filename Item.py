@@ -47,10 +47,10 @@ class Armor(Item):
 
     def __init__(self, name: str, stats: Stats, rarity: Rarity, armor: float,
                  mag_ratio: float, phys_ratio: float):
-
-        self.armor = armor
-        self.mag_ratio = mag_ratio
-        self.phys_ratio = phys_ratio
+        mult = Item.RARITY_MULTIPLIERS[rarity.value]
+        self.armor = int(armor * mult)
+        self.mag_ratio = round(mag_ratio * mult, 2)
+        self.phys_ratio = round(phys_ratio * mult, 2)
 
         super(Armor, self).__init__(name, stats, rarity)
 
