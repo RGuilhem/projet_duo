@@ -1,7 +1,8 @@
 from Stats import Stats
-from Item import Item
+from Item import Item, Weapon, Armor
 from random import random
 from RarityEnum import Rarity
+
 
 class Entity:
 
@@ -21,27 +22,51 @@ class Entity:
         self.stuff = stuff
         self.compute_total_stats()
         self.hp = 100
-        self.lvl = 0 
+        self.lvl = 0
         self.compute_hp()
 
     def do_damage(self, target) -> None:
         att = self.total_stats.get_attack()
         enn_agi = target.total_stats.get_agility()
         if att <= enn_agi:
-            hit_chance = (0.5*att/enn_agi)
+            hit_chance = (0.5 * att / enn_agi)
         else:
-            hit_chance = (1-0.5*enn_agi/att)
+            hit_chance = (1 - 0.5 * enn_agi / att)
         print(hit_chance)
         if random() < hit_chance:
             print("hit")
         else:
             print("miss")
 
+    def get_weapon_stats(self):
+        """
+        Return a list containing the specials stats of the Enity's weapon
+        return : list([damage, mag_ratio, phys_ratio])
+        """
+        for item in self.stuff:
+            if isinstance(item, Weapon):
+                return list([item.damage, item.mag_ratio, item.phys_ratio])
+
+    def get_armor_stats(self):
+        """
+        Return a list containing the specials stats of the Enity's armor
+        return : list([armor, mag_ratio, phys_ratio])
+        """
+        for item in self.stuff:
+            if isinstance(item, Armor):
+                return list([item.armor, item.mag_ratio, item.phys_ratio])
+
+    def compute_hit_damage(self, target) -> int:
+        damage = 0
+        #TODO implement calculation
+        return damage
+
     def take_damage(self, damage) -> None:
         pass
 
     def compute_hp(self) -> None:
-        self.hp = int((100 + 10*self.lvl) * (1+self.total_stats.get_strength()*0.01))
+        self.hp = int((100 + 10 * self.lvl) *
+                      (1 + self.total_stats.get_strength() * 0.01))
 
     def compute_total_stats(self) -> None:
         self.total_stats = Stats.create_empty()
@@ -54,8 +79,4 @@ class Entity:
 
 
 if __name__ == "__main__":
-    entity = Entity("Player", Stats([100, 24, 0, 0, 0]), [Item("i1", Stats([0, 2, 0, 0, 0]), Rarity.NORMAL, 4)])
-    target = Entity("Target", Stats([0, 0, 0, 6, 0]), [Item("i2", Stats([0, 0, 0, 2, 0]), Rarity.NORMAL, 10)])
-    print(entity)
-    print(entity.hp)
-
+    pass
