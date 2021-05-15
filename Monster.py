@@ -42,4 +42,6 @@ class Rank(Enum):
 
 
 if __name__ == "__main__":
-    print(Monster("Blob", Stats([1, 2, 3, 4, 5]), [Item("item", Stats.create_empty(), Rarity.MAGICAL)], Rank.ELITE))
+    m = Monster("Blob", Stats([100, 2, 3, 4, 5]), [Item("item", Stats.create_empty(), Rarity.MAGICAL, 3)], Rank.ELITE)
+    print(m)
+    print(m.hp)
