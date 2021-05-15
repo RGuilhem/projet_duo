@@ -7,7 +7,7 @@ from RarityEnum import Rarity
 class Generators:
 
     @staticmethod
-    def random_item() -> Item:
+    def random_item_with_level(lvl: int) -> Item:
         f = open("fantasy_names.txt")
         content = f.read()
         f.close()
@@ -15,7 +15,11 @@ class Generators:
         item_name = f"{random.choice(names)}'s item"
         rarity = random.choice(list(Rarity))
         stats = Generators.random_stats(10, 25)
-        return Item(item_name, stats, rarity)
+        return Item(item_name, stats, rarity, lvl)
+
+    @staticmethod
+    def random_item() -> Item:
+        return Generators.random_item_with_level(random.randrange(25))
 
     @staticmethod
     def random_unique():
