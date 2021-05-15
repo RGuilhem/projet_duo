@@ -1,7 +1,6 @@
 from Stats import Stats
 from Item import Item, Weapon, Armor
 from random import random
-from RarityEnum import Rarity
 
 
 class Entity:
