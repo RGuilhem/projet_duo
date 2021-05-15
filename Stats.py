@@ -16,8 +16,12 @@ class Stats:
             self.values[keys[i]] = stat_list[i]
 
     @staticmethod
-    def create_empty():
+    def create_empty() -> "Stats":
         return Stats([0, 0, 0, 0, 0])
+
+    @staticmethod
+    def create_with_value(value: int) -> "Stats":
+        return Stats([value]*5)
 
     def get_strength(self) -> int:
         return self.values["strength"]
