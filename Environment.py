@@ -37,8 +37,8 @@ class Level:
         self.rooms = rooms
         self.biome = biome
         self.level_monsters = level_monsters
-        self.map = [[0]*len(self.rooms) for lgn in range(len(self.rooms))]
-        self.connected_map = [[0]*len(self.rooms) for lgn in range(len(self.rooms))]
+        self.map = [[0] * len(self.rooms) for _ in range(len(self.rooms))]
+        self.connected_map = [[0] * len(self.rooms) for _ in range(len(self.rooms))]
 
         for room in rooms:
             self.map[room.position_x][room.position_y] = room.number
@@ -57,18 +57,40 @@ class Level:
                 print("{:<2}".format(self.map[i][j]), end=" ")
             print()
 
+    def show_connected_map(self):
+        for i in range(len(self.rooms)):
+            for j in range(len(self.rooms)):
+                print("{:<2}".format(self.connected_map[i][j]), end=" ")
+            print()
 
-    def generate_connected_map(self):
-        pass
+    @staticmethod
+    def is_connected(room1: "Room", room2: "Room", size: int) -> bool:
 
-    def is_connected(self, room : "Room", mini_map):
-        if mini_map[room.position_x-1][room.position_y] != 0:
+        check_for_left = True
+        check_for_up = True
+        check_for_right = True
+        check_for_down = True
+
+        if room1.position_x == 0:
+            check_for_up = False
+        if room1.position_x == size - 1:
+            check_for_down = False
+        if room1.position_y == 0:
+            check_for_left = False
+        if room1.position_y == size - 1:
+            check_for_right = False
+
+        # connected left
+        if check_for_left and room1.position_x - 1 == room2.position_x and room1.position_y == room2.position_y:
             return True
-        if mini_map[room.position_x][room.position_y+1] != 0:
+        # connected up
+        if check_for_up and room1.position_x == room2.position_x and room1.position_y + 1 == room2.position_y:
             return True
-        if mini_map[room.position_x+1][room.position_y] != 0:
+        # connected right
+        if check_for_right and room1.position_x + 1 == room2.position_x and room1.position_y == room2.position_y:
             return True
-        if mini_map[room.position_x][room.position_y-1] != 0:
+        # connected down
+        if check_for_down and room1.position_x == room2.position_x and room1.position_y - 1 == room2.position_y:
             return True
         return False
 
@@ -98,10 +120,10 @@ class Biome:
 
 
 if __name__ == "__main__":
-    room1 = Room(None, 0, 0, None)
-    room2 = Room(None, 0, 2, None)
-    room3 = Room(None, 2, 0, None)
-    room4 = Room(None, 1, 2, None)
+    room_1 = Room(None, 0, 2, 1, None)
+    room_2 = Room(None, 1, 1, 2, None)
+    room_3 = Room(None, 1, 2, 3, None)
+    room_4 = Room(None, 2, 3, 4, None)
 
     room_list = [room_1, room_2, room_3, room_4]
 
