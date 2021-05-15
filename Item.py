@@ -11,7 +11,7 @@ class Item:
     RARITY_MULTIPLIERS: list[float] = [1, 1.2, 1.4, 1.6, 1.8]
 
     # Methods
-    def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl: int) -> Item:
+    def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl: int) -> "Item":
         self.name = name
         self.stats = stats * Item.RARITY_MULTIPLIERS[rarity.value]
         self.stats += Stats.create_with_value(lvl)
@@ -29,7 +29,7 @@ class Weapon(Item):
     phys_ratio: float
 
     def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl: int, damage: float,
-                 mag_ratio: float, phys_ratio: float) -> Weapon:
+                 mag_ratio: float, phys_ratio: float) -> "Weapon":
         mult = Item.RARITY_MULTIPLIERS[rarity.value]
         self.damage = int(damage * mult + lvl)
         self.mag_ratio = round(mag_ratio * mult + 0.01*lvl, 2)
@@ -48,7 +48,7 @@ class Armor(Item):
     phys_ratio: float
 
     def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl:int, armor: float,
-                 mag_ratio: float, phys_ratio: float) -> Armor:
+                 mag_ratio: float, phys_ratio: float) -> "Armor":
         mult = Item.RARITY_MULTIPLIERS[rarity.value]
         self.armor = int(armor * mult + lvl)
         self.mag_ratio = round(mag_ratio * mult + 0.01*lvl, 2)

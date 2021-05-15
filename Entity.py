@@ -20,8 +20,8 @@ class Entity:
         self.base_stats = base_stats
         self.stuff = stuff
         self.compute_total_stats()
-        self.hp = self.compute_hp(base_stats)
-        self.lvl = 0
+        self.hp = 100
+        self.lvl = 0 
 
     def do_damage(self, target) -> None:
         att = self.total_stats.get_attack()
@@ -39,9 +39,8 @@ class Entity:
     def take_damage(self, damage) -> None:
         pass
 
-    @staticmethod
-    def compute_hp(player_stats: Stats) -> int:
-        pass
+    def compute_hp(self, layer_stats: Stats) -> None:
+        self.hp = int((100 + 10*self.lvl) * self.total_stats.get_strength()*0.01)
 
     def compute_total_stats(self) -> None:
         self.total_stats = Stats.create_empty()
@@ -56,4 +55,5 @@ class Entity:
 if __name__ == "__main__":
     entity = Entity("Player", Stats([0, 24, 0, 0, 0]), [Item("i1", Stats([0, 2, 0, 0, 0]), None)])
     target = Entity("Target", Stats([0, 0, 0, 6, 0]), [Item("i2", Stats([0, 0, 0, 2, 0]), None)])
-    entity.do_damage(target)
+    print(entity.hp)
+
