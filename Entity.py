@@ -31,7 +31,7 @@ class Entity:
         self.lvl = 0
         self.compute_hp()
 
-    def do_damage(self, target -> "Entity") -> None:
+    def do_damage(self, target: "Entity") -> None:
         """
         Function called when an entity attacks another
         -target: Entity = the target that is attaccked
@@ -93,7 +93,7 @@ class Entity:
         return: float = number between 0 and 1, 0 mean 100% mitigation
         """
         pass
- 
+
     def compute_hp(self) -> None:
         """
         Calculate the total hp based on the stats with formula:
