@@ -15,7 +15,7 @@ class Entity:
     position = [0] * 2
 
     # Methods
-    def __init__(self, name: str, base_stats: Stats, stuff: list[Item]):
+    def __init__(self, name: str, base_stats: Stats, stuff: list[Item]) -> "Entity":
         self.name = name
         self.base_stats = base_stats
         self.stuff = stuff
