@@ -37,14 +37,19 @@ class Level:
         self.rooms = rooms
         self.biome = biome
         self.level_monsters = level_monsters
-        self.map = [[0] * len(self.rooms) for lgn in range(len(self.rooms))]
-        self.connected_map = [[0] * len(self.rooms) for lgn in range(len(self.rooms))]
+        self.map = [[0] * len(self.rooms) for _ in range(len(self.rooms))]
+        self.connected_map = [[0] * len(self.rooms) for _ in range(len(self.rooms))]
 
         for room in rooms:
             self.map[room.position_x][room.position_y] = room.number
 
-    def add_room(self, new_room: "Room"):
-        pass
+        # i (lines) goes from 0 to (len(self.rooms)-1) in the list of rooms
+        for i in range(len(self.rooms)):
+            # j (columns) goes from (i+1) to (len(self.rooms)-1) in the list of rooms
+            for j in range(i + 1, len(self.rooms)):
+                if Level.is_connected(self.rooms[i], self.rooms[j], len(self.rooms)):
+                    self.connected_map[i][j] = 1  # input value to upper_triangle of connected_map
+                    self.connected_map[j][i] = 1  # input value to lower_triangle of connected_map
 
     def show_map(self):
         for i in range(len(self.rooms)):
@@ -52,12 +57,11 @@ class Level:
                 print("{:<2}".format(self.map[i][j]), end=" ")
             print()
 
-    def generate_connected_map(self):
-
-        for i in range(len(self.rooms)):  # i goes from 0 to (len(self.rooms)-1) in the list of rooms
-            for j in range(i + 1, len(self.rooms)):  # j goes from (i+1) to (len(self.rooms)-1) in the list of rooms
-                if Level.is_connected(self.rooms[i], self.rooms[j], len(self.rooms)):
-                    self.connected_map[i][j] = 1
+    def show_connected_map(self):
+        for i in range(len(self.rooms)):
+            for j in range(len(self.rooms)):
+                print("{:<2}".format(self.connected_map[i][j]), end=" ")
+            print()
 
     @staticmethod
     def is_connected(room1: "Room", room2: "Room", size: int) -> bool:
@@ -76,13 +80,17 @@ class Level:
         if room1.position_y == size - 1:
             check_for_right = False
 
-        if check_for_left and room1.position_x - 1 == room2.position_x and room1.position_y == room2.position_y:  # connected left
+        # connected left
+        if check_for_left and room1.position_x - 1 == room2.position_x and room1.position_y == room2.position_y:
             return True
-        if check_for_up and room1.position_x == room2.position_x and room1.position_y + 1 == room2.position_y:  # connected up
+        # connected up
+        if check_for_up and room1.position_x == room2.position_x and room1.position_y + 1 == room2.position_y:
             return True
-        if check_for_right and room1.position_x + 1 == room2.position_x and room1.position_y == room2.position_y:  # connected right
+        # connected right
+        if check_for_right and room1.position_x + 1 == room2.position_x and room1.position_y == room2.position_y:
             return True
-        if check_for_down and room1.position_x == room2.position_x and room1.position_y - 1 == room2.position_y:  # connected down
+        # connected down
+        if check_for_down and room1.position_x == room2.position_x and room1.position_y - 1 == room2.position_y:
             return True
         return False
 
@@ -109,12 +117,14 @@ class Biome:
 
 
 if __name__ == "__main__":
-    room_1 = Room(None, 0, 0, 1, None)
-    room_2 = Room(None, 0, 2, 2, None)
-    room_3 = Room(None, 2, 0, 3, None)
-    room_4 = Room(None, 1, 2, 4, None)
+    room_1 = Room(None, 0, 2, 1, None)
+    room_2 = Room(None, 1, 1, 2, None)
+    room_3 = Room(None, 1, 2, 3, None)
+    room_4 = Room(None, 2, 3, 4, None)
 
     room_list = [room_1, room_2, room_3, room_4]
 
     level1 = Level(1, room_list, None, None)
     level1.show_map()
+    print()
+    level1.show_connected_map()
