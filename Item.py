@@ -11,14 +11,14 @@ class Item:
     RARITY_MULTIPLIERS: list[float] = [1, 1.2, 1.4, 1.6, 1.8]
 
     # Methods
-    def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl: int):
+    def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl: int) -> Item:
         self.name = name
         self.stats = stats * Item.RARITY_MULTIPLIERS[rarity.value]
         self.stats += Stats.create_with_value(lvl)
         self.rarity = rarity
         self.lvl = lvl
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Level {self.lvl} {self.rarity} {str(self.name)}\n STATS :\n{self.stats}"
 
 
@@ -29,7 +29,7 @@ class Weapon(Item):
     phys_ratio: float
 
     def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl: int, damage: float,
-                 mag_ratio: float, phys_ratio: float):
+                 mag_ratio: float, phys_ratio: float) -> Weapon:
         mult = Item.RARITY_MULTIPLIERS[rarity.value]
         self.damage = int(damage * mult + lvl)
         self.mag_ratio = round(mag_ratio * mult + 0.01*lvl, 2)
@@ -37,7 +37,7 @@ class Weapon(Item):
 
         super(Weapon, self).__init__(name, stats, rarity, lvl)
 
-    def __str__(self) -> str():
+    def __str__(self) -> str:
         return f"{super().__str__()}Damage: {self.damage}\nMagicRatio: {self.mag_ratio}\nPhysical Ratio: {self.phys_ratio}\n"
 
 
@@ -48,7 +48,7 @@ class Armor(Item):
     phys_ratio: float
 
     def __init__(self, name: str, stats: Stats, rarity: Rarity, lvl:int, armor: float,
-                 mag_ratio: float, phys_ratio: float):
+                 mag_ratio: float, phys_ratio: float) -> Armor:
         mult = Item.RARITY_MULTIPLIERS[rarity.value]
         self.armor = int(armor * mult + lvl)
         self.mag_ratio = round(mag_ratio * mult + 0.01*lvl, 2)
@@ -56,7 +56,7 @@ class Armor(Item):
 
         super(Armor, self).__init__(name, stats, rarity, lvl)
 
-    def __str__(self) -> str():
+    def __str__(self) -> str:
         return f"{super().__str__()}Armor: {self.armor}\nMagicRatio: {self.mag_ratio}\nPhysical Ratio: {self.phys_ratio}\n"
 
 

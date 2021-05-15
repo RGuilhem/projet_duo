@@ -3,7 +3,7 @@ class Stats:
     values: dict = dict([("strength", 0), ("attack", 0), ("magic", 0),
                          ("agility", 0), ("defense", 0)])
 
-    def __init__(self, stat_list):
+    def __init__(self, stat_list) -> Stats:
         if len(self.values) != len(stat_list):
             raise ValueError(
                 "the length of the stat_list argument must be equal to the number of stats"
@@ -38,7 +38,7 @@ class Stats:
     def get_defense(self) -> int:
         return self.values["defense"]
 
-    def copy(self):
+    def copy(self) -> Stats:
         temp = Stats.create_empty()
         for key in list(self.values):
             temp.values[key] = self.values[key]
@@ -66,7 +66,7 @@ class Stats:
     def __imul__(self, other: float) -> "Stats":
         return self * other
 
-    def __str__(self):
+    def __str__(self) -> str:
         string = ""
         for key in list(self.values):
             string += f"{key}: {self.values[key]}\n"

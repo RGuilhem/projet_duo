@@ -22,7 +22,7 @@ class Generators:
         return Generators.random_item_with_level(random.randrange(25))
 
     @staticmethod
-    def random_unique():
+    def random_unique() -> Item:
         pass
 
     @staticmethod

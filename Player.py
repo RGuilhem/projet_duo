@@ -21,12 +21,12 @@ class Player(Entity):
     #inventory : List[Item]
 
     # Methods
-    def __init__(self, player_name: str, base_stats: Stats):
+    def __init__(self, player_name: str, base_stats: Stats) -> Player:
         super().__init__(player_name, base_stats)
         self.position = [0, 0]
 
     @staticmethod
-    def move(self, x: int, y: int):
+    def move(self, x: int, y: int) -> None:
         self.position[0] += x
         self.position[1] += y
 

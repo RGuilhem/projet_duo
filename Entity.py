@@ -23,7 +23,7 @@ class Entity:
         self.hp = self.compute_hp(base_stats)
         self.lvl = 0
 
-    def do_damage(self, target):
+    def do_damage(self, target) -> None:
         att = self.total_stats.get_attack()
         enn_agi = target.total_stats.get_agility()
         if att <= enn_agi:
@@ -36,11 +36,11 @@ class Entity:
         else:
             print("miss")
 
-    def take_damage(self, damage):
+    def take_damage(self, damage) -> None:
         pass
 
     @staticmethod
-    def compute_hp(player_stats: Stats):
+    def compute_hp(player_stats: Stats) -> int:
         pass
 
     def compute_total_stats(self) -> None:
@@ -49,7 +49,7 @@ class Entity:
         for item in self.stuff:
             self.total_stats += item.stats
 
-    def __str__(self):
+    def __str__(self) -> int:
         return f"{self.name}: Level {self.lvl}"
 
 

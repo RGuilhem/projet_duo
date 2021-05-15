@@ -8,6 +8,5 @@ class Rarity(Enum):
     EPIC = 3
     LEGENDARY = 4
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}"
- 

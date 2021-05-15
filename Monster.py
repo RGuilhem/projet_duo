@@ -22,7 +22,7 @@ class Monster(Entity):
     rank: "Rank"
 
     def __init__(self, name: str, base_stats: Stats,
-                 stuff, rank: "Rank") -> None:
+                 stuff, rank: "Rank") -> Monster:
 
         super().__init__(name, base_stats, stuff)
         self.rank = rank
