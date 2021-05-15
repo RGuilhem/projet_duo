@@ -22,7 +22,7 @@ class Monster(Entity):
     rank: "Rank"
 
     def __init__(self, name: str, base_stats: Stats,
-                 stuff, rank: "Rank") -> Monster:
+                 stuff, rank: "Rank"):
 
         super().__init__(name, base_stats, stuff)
         self.rank = rank
@@ -42,4 +42,6 @@ class Rank(Enum):
 
 
 if __name__ == "__main__":
-    print(Monster("Blob", Stats([1, 2, 3, 4, 5]), [Item("item", Stats.create_empty(), Rarity.MAGICAL)], Rank.ELITE))
+    m = Monster("Blob", Stats([100, 2, 3, 4, 5]), [Item("item", Stats.create_empty(), Rarity.MAGICAL, 3)], Rank.ELITE)
+    print(m)
+    print(m.hp)

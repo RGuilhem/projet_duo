@@ -21,8 +21,8 @@ class Player(Entity):
     #inventory : List[Item]
 
     # Methods
-    def __init__(self, player_name: str, base_stats: Stats) -> Player:
-        super().__init__(player_name, base_stats)
+    def __init__(self, player_name: str, base_stats: Stats, stuff):
+        super().__init__(player_name, base_stats, stuff)
         self.position = [0, 0]
 
     @staticmethod
@@ -32,9 +32,7 @@ class Player(Entity):
 
 
 def main():
-
-    obj = Player("Sylver", Stats([1, 2, 3, 4, 5]))
-    print(obj.lvl, obj.position, obj.name)
+    pass
 
 
 if __name__ == "__main__":
