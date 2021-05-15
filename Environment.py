@@ -48,8 +48,8 @@ class Level:
             # j (columns) goes from (i+1) to (len(self.rooms)-1) in the list of rooms
             for j in range(i + 1, len(self.rooms)):
                 if Level.is_connected(self.rooms[i], self.rooms[j], len(self.rooms)):
-                    self.connected_map[i][j] = 1  # input value to upper_triangle of connected_map
-                    self.connected_map[j][i] = 1  # input value to lower_triangle of connected_map
+                    self.connected_map[i][j] = 1  # input value to upper_triangle of connected_map's matrix
+                    self.connected_map[j][i] = 1  # input value to lower_triangle of connected_map's matrix
 
     def show_map(self):
         for i in range(len(self.rooms)):
@@ -114,6 +114,9 @@ class Room:
 
 class Biome:
     pass
+
+
+
 
 
 if __name__ == "__main__":

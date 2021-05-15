@@ -21,8 +21,8 @@ class Player(Entity):
     #inventory : List[Item]
 
     # Methods
-    def __init__(self, player_name: str, base_stats: Stats) -> Player:
-        super().__init__(player_name, base_stats)
+    def __init__(self, player_name: str, base_stats: Stats):
+        super().__init__(player_name, base_stats, None)
         self.position = [0, 0]
 
     @staticmethod
